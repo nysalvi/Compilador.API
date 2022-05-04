@@ -12857,11 +12857,6 @@ currentLexeme));
                     }
                     else currentLexeme += current[i];
                 }
-
-                if (tokens.IndexOf(tokens[tokens.Count - 1]) != -1)
-                {
-
-                }
             }
 
             if (currentLexeme != "")
