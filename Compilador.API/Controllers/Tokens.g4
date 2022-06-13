@@ -26,7 +26,7 @@
 	senao : ELSE bloco | EPSILON
 	enquanto : WHILE OPEN_PARENTHESIS expressao CLOSE_PARENTHESIS bloco
 	atribuicao : ID ATTRIBUTION complemento
-	complemento : expressao SEMICOLON | funcao SEMICOLON
+	complemento : expressao SEMICOLON | funcao SEMICOLON 
 	funcao : FUNC ID OPEN_PARENTHESIS argumentos CLOSE_PARENTHESIS
 	argumentos : expressao novo_argumento | EPSILON
 	novo_argumento : COMMA expressao novo_argumento | EPSILON
