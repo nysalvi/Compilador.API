@@ -54,6 +54,7 @@ namespace Compilador.API.Controllers
             {85, "NUM_DEC" },
             {87, "TEXT"}
         };
+
         private static int idcount = 0;
 
         private string lexeme;

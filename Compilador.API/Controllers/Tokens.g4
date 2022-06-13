@@ -52,6 +52,7 @@
 /* 
  * Lexer Rules
  */ 
+
 EPSILON	:	'';
 INT	:	'int';
 IF :	'if';
