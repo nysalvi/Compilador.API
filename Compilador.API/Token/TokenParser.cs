@@ -135,6 +135,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitPrograma(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrograma(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -183,6 +189,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitFuncoes(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitFuncoes(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -257,6 +269,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitDec_funcao(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDec_funcao(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -310,6 +328,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitTipo_retorno(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTipo_retorno(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -375,6 +399,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitTipo(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTipo(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -420,6 +450,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitTipo_base(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTipo_base(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -475,6 +511,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitDimensao(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDimensao(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -544,6 +586,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitParametros(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitParametros(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -616,6 +664,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitNovo_parametro(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNovo_parametro(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -683,6 +737,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitPrincipal(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrincipal(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -736,6 +796,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitBloco(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitBloco(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -794,6 +860,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitDec_variaveis(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDec_variaveis(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -867,6 +939,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitNovo_id(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNovo_id(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -932,6 +1010,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitComandos(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitComandos(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1008,6 +1092,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitComando(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitComando(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1108,6 +1198,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitLeitura(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLeitura(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1168,6 +1264,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitEscrita(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEscrita(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1221,6 +1323,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitTermo(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTermo(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1287,6 +1395,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitNovo_termo(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNovo_termo(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1359,6 +1473,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitSelecao(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSelecao(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1413,6 +1533,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitSenao(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSenao(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1480,6 +1606,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitEnquanto(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEnquanto(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1533,6 +1665,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitAtribuicao(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAtribuicao(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1583,6 +1721,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitComplemento(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitComplemento(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1655,6 +1799,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitFuncao(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitFuncao(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1709,6 +1859,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitArgumentos(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitArgumentos(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1772,6 +1928,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitNovo_argumento(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNovo_argumento(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1838,6 +2000,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitRetorno(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitRetorno(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1900,6 +2068,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpressao(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpressao(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1945,6 +2119,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_ou(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_ou(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1995,6 +2175,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_ou2(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_ou2(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2061,6 +2247,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_e(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_e(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2110,6 +2302,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_e2(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_e2(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2176,6 +2374,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_relacional(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_relacional(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2225,6 +2429,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_relacional2(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_relacional2(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2291,6 +2501,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_aditiva(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_aditiva(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2342,6 +2558,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_aditiva2(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_aditiva2(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2405,6 +2627,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitOp_aditivo(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitOp_aditivo(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2459,6 +2687,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_multiplicativa(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_multiplicativa(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2510,6 +2744,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitExpr_multiplicativa2(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExpr_multiplicativa2(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2574,6 +2814,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitOp_multiplicativo(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitOp_multiplicativo(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2641,6 +2887,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitFator(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitFator(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2725,6 +2977,12 @@ public partial class TokenParser : Parser {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitVetor(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitVetor(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2789,6 +3047,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitConstante(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitConstante(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2856,6 +3120,12 @@ public partial class TokenParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			ITokenListener typedListener = listener as ITokenListener;
 			if (typedListener != null) typedListener.ExitSinal(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			ITokenVisitor<TResult> typedVisitor = visitor as ITokenVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSinal(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
