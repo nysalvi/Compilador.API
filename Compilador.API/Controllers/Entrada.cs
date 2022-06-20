@@ -1,6 +1,9 @@
+using Antlr4.Runtime;
 using Compilador.API.Data;
+using Compilador.API.Token;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Text;
+using System.Linq;
 namespace Compilador.API.Controllers
 {
     [ApiController]
@@ -13,12 +16,8 @@ namespace Compilador.API.Controllers
         {
             Compilador c = new Compilador();
             c.Lexico(obj.Mensagem);
-
-           
             obj.Mensagem = c.mensagem;
             return obj.Mensagem;
         }
-
-       
     }
 }

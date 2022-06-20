@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Compilador.API.Controllers
+namespace Compilador.API.Token
 {
     public class Token
     {
@@ -72,29 +72,29 @@ namespace Compilador.API.Controllers
             if (value == 5)
             {
                 ArrayList array = ValidID(lexeme);
-                    
-                this.token = valuesList[(int)array[0]];
+
+                token = valuesList[(int)array[0]];
                 this.lexeme = array[1].ToString();
 
             }
             else
             {
-                this.token = valuesList[value];
+                token = valuesList[value];
                 this.lexeme = lexeme;
             }
             tokenID = value;
             if (value == 5)
                 id = ++idcount;
-            else 
+            else
                 id = 0;
         }
         private ArrayList ValidID(string lexeme)
         {
             if (lexeme == "int")
-                return new ArrayList{3, "int"};
+                return new ArrayList { 3, "int" };
 
             if (lexeme == "if")
-                return new ArrayList {4, "if"};
+                return new ArrayList { 4, "if" };
 
             if (lexeme == "void")
                 return new ArrayList { 42, "void" };
@@ -106,13 +106,13 @@ namespace Compilador.API.Controllers
                 return new ArrayList { 37, "scanf" };
 
             if (lexeme == "for")
-                return new ArrayList { 12,"for" };
+                return new ArrayList { 12, "for" };
 
             if (lexeme == "char")
                 return new ArrayList { 16, "char" };
 
             if (lexeme == "boolean")
-                return new ArrayList { 23, "boolean"};
+                return new ArrayList { 23, "boolean" };
 
             if (lexeme == "main")
                 return new ArrayList { 41, "main" };
@@ -127,13 +127,13 @@ namespace Compilador.API.Controllers
                 return new ArrayList { 54, "return" };
 
             if (lexeme == "float")
-                return new ArrayList { 10,"float"};
+                return new ArrayList { 10, "float" };
 
-            return new ArrayList { 5, "id"};
-        } 
+            return new ArrayList { 5, "id" };
+        }
         public override string ToString()
         {
-            return "Lexeme : " + Lexeme + " | Token : " + _Token + GetID + "\n"; 
+            return "Lexeme : " + Lexeme + " | Token : " + _Token + GetID + "\n";
         }
     }
 }
