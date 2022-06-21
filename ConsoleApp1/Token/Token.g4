@@ -52,61 +52,61 @@ grammar Token;
 /* 
  * Lexer Rules
  */ 
-
-EPSILON	: ;
-
-OPEN_PARENTHESIS : '('; 
-CLOSE_PARENTHESIS :	')'; 
-OPEN_BRACKET : '[';
-CLOSE_BRACKET :	']'; 
-OPEN_CURLYBRACKET :	'{';
-CLOSE_CURLYBRACKET : '}'; 
-COMMA :	',';
-SEMICOLON :	';';
-
-PLUS : '+';
-MINUS :	'-';
-TIMES :	'*';
-DIV	: '/';
-MOD	: '%'; 
-
-NOT	: '!';
-ATTRIBUTION	:	'=';
-fragment LOWER : '<'; 
-fragment LOWER_EQUAL : '<=';
-fragment BIGGER	: '>';
-fragment BIGGER_EQUAL :	'>=';
-fragment DIFFERENT : '!=';
-fragment EQUALS	: '==';
-
-OR : '||';
-AND	: '&&';
-
-FUNC : 'func';
-COMP : LOWER | LOWER_EQUAL | BIGGER | BIGGER_EQUAL | DIFFERENT | EQUALS ;
-
-
-NEWLINE : ('\r'? '\n' | '\r')+ ;
-COMMENT	: '//' .*? NEWLINE;
-TEXT	: '"' .*? '"';
-
-IF : 'if';
-INT	: 'int';
-FOR	: 'for';
-CHAR : 'char';
-ELSE : 'else';
-MAIN : 'main';
-VOID : 'void';
-FLOAT :	'float';
-SCANF: 'scanf';
-WHILE: 'while';
-BOOLEAN : 'boolean';
-PRINTLN : 'println';
-RETURN : 'return';
-
-BOOL : 'true' | 'false';
-LETTER	: [a-z] | [A-Z] | '_';
-INTEGER : [0-9]+;
-DECIMAL : [0-9]+'.'[0-9]+;
-
-ID : LETTER+ INTEGER* LETTER*;
+	
+	WHITESPACE : (\t | \n | \r)+ -> skip;
+	EPSILON	: ;
+	OPEN_PARENTHESIS : '('; 
+	CLOSE_PARENTHESIS :	')'; 
+	OPEN_BRACKET : '[';
+	CLOSE_BRACKET :	']'; 
+	OPEN_CURLYBRACKET :	'{';
+	CLOSE_CURLYBRACKET : '}'; 
+	COMMA :	',';
+	SEMICOLON :	';';
+	
+	PLUS : '+';
+	MINUS :	'-';
+	TIMES :	'*';
+	DIV	: '/';
+	MOD	: '%'; 
+	
+	NOT	: '!';
+	ATTRIBUTION	:	'=';
+	fragment LOWER : '<'; 
+	fragment LOWER_EQUAL : '<=';
+	fragment BIGGER	: '>';
+	fragment BIGGER_EQUAL :	'>=';
+	fragment DIFFERENT : '!=';
+	fragment EQUALS	: '==';
+	
+	OR : '||';
+	AND	: '&&';
+	
+	FUNC : 'func';
+	COMP : LOWER | LOWER_EQUAL | BIGGER | BIGGER_EQUAL | DIFFERENT | EQUALS ;
+	
+	
+	NEWLINE : ('\r'? '\n' | '\r')+ ;
+	COMMENT	: '//' .*? NEWLINE;
+	TEXT	: '"' .*? '"';
+	
+	IF : 'if';
+	INT	: 'int';
+	FOR	: 'for';
+	CHAR : 'char';
+	ELSE : 'else';
+	MAIN : 'main';
+	VOID : 'void';
+	FLOAT :	'float';
+	SCANF: 'scanf';
+	WHILE: 'while';
+	BOOLEAN : 'boolean';
+	PRINTLN : 'println';
+	RETURN : 'return';
+	
+	BOOL : 'true' | 'false';
+	LETTER	: [a-z] | [A-Z] | '_';
+	INTEGER : [0-9]+;
+	DECIMAL : [0-9]+'.'[0-9]+;
+	
+	ID : LETTER+ INTEGER* LETTER*;
