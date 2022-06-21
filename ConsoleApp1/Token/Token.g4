@@ -1,5 +1,5 @@
 grammar Token;
-
+	
 /* 
  * Parser Rules
  */
@@ -9,7 +9,7 @@ grammar Token;
 	tipo_retorno : tipo | VOID;
 	tipo : tipo_base dimensao;
 	tipo_base : CHAR | FLOAT | INT | BOOLEAN;
-	dimensao : OPEN_BRACKET INT CLOSE_BRACKET dimensao | EPSILON;
+	dimensao : OPEN_BRACKET INTEGER CLOSE_BRACKET dimensao | EPSILON;
 	parametros : tipo ID novo_parametro | EPSILON;
 	novo_parametro : COMMA tipo ID novo_parametro | EPSILON;
 	principal : MAIN OPEN_PARENTHESIS CLOSE_PARENTHESIS bloco;
@@ -44,30 +44,34 @@ grammar Token;
 	expr_multiplicativa : fator expr_multiplicativa2;
 	expr_multiplicativa2 : op_multiplicativo fator expr_multiplicativa2 | EPSILON;
 	op_multiplicativo : TIMES | DIV | MOD;
-	fator : sinal ID vetor | constante | NOT fator | OPEN_BRACKET expressao CLOSE_BRACKET;
+	fator : sinal ID vetor | constante | NOT fator | OPEN_PARENTHESIS expressao CLOSE_PARENTHESIS;
 	vetor : OPEN_BRACKET expr_aditiva CLOSE_BRACKET | EPSILON;
-	constante : sinal INT | sinal FLOAT | TEXT;
+	constante : sinal INTEGER | sinal DECIMAL | TEXT;
 	sinal : PLUS | MINUS | EPSILON;
 	
 /* 
  * Lexer Rules
  */ 
 
-EPSILON	: '^';
-INT	: 'int';
-IF : 'if';
-FLOAT :	'float';
-FOR	: 'for';
-CHAR : 'char';
-BOOLEAN : 'boolean';
-ELSE : 'else';
-WHILE: 'while';
-SCANF: 'scanf';
-MAIN : 'main';
-VOID : 'void';
-PRINTLN : 'println';
-RETURN : 'return';
+EPSILON	: ;
 
+OPEN_PARENTHESIS : '('; 
+CLOSE_PARENTHESIS :	')'; 
+OPEN_BRACKET : '[';
+CLOSE_BRACKET :	']'; 
+OPEN_CURLYBRACKET :	'{';
+CLOSE_CURLYBRACKET : '}'; 
+COMMA :	',';
+SEMICOLON :	';';
+
+PLUS : '+';
+MINUS :	'-';
+TIMES :	'*';
+DIV	: '/';
+MOD	: '%'; 
+
+NOT	: '!';
+ATTRIBUTION	:	'=';
 fragment LOWER : '<'; 
 fragment LOWER_EQUAL : '<=';
 fragment BIGGER	: '>';
@@ -75,32 +79,34 @@ fragment BIGGER_EQUAL :	'>=';
 fragment DIFFERENT : '!=';
 fragment EQUALS	: '==';
 
-FUNC : 'func';
-NOT	: '!';
-ATTRIBUTION	:	'=';
 OR : '||';
 AND	: '&&';
+
+FUNC : 'func';
 COMP : LOWER | LOWER_EQUAL | BIGGER | BIGGER_EQUAL | DIFFERENT | EQUALS ;
 
-OPEN_PARENTHESIS : '('; 
-CLOSE_PARENTHESIS :	')'; 
-OPEN_BRACKET : 'OPEN_BRACKET';
-CLOSE_BRACKET :	'CLOSE_BRACKET'; 
-OPEN_CURLYBRACKET :	'{';
-CLOSE_CURLYBRACKET : '}'; 
-COMMA :	',';
-SEMICOLON :	';';
-PLUS : '+';
-MINUS :	'-';
-TIMES :	'*';
-DIV	: '/';
-MOD	: '%'; 
-NEWLINE : OPEN_BRACKET'\r'? '\n' | '\r'CLOSE_BRACKET+ ;
+
+NEWLINE : ('\r'? '\n' | '\r')+ ;
 COMMENT	: '//' .*? NEWLINE;
 TEXT	: '"' .*? '"';
 
-fragment LETTER	: ([a-z]|[A-Z]|'_');
-fragment INTEGER : [0-9]+;
-fragment DECIMAL : [0-9]+'.'[0-9]+;
+IF : 'if';
+INT	: 'int';
+FOR	: 'for';
+CHAR : 'char';
+ELSE : 'else';
+MAIN : 'main';
+VOID : 'void';
+FLOAT :	'float';
+SCANF: 'scanf';
+WHILE: 'while';
+BOOLEAN : 'boolean';
+PRINTLN : 'println';
+RETURN : 'return';
+
+BOOL : 'true' | 'false';
+LETTER	: [a-z] | [A-Z] | '_';
+INTEGER : [0-9]+;
+DECIMAL : [0-9]+'.'[0-9]+;
 
 ID : LETTER+ INTEGER* LETTER*;
