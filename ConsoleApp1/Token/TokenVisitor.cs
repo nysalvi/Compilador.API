@@ -14,45 +14,36 @@ namespace Compilador.API.Token
             var nomeVariavel = context.ID().GetText();
             var value = Visit(context.complemento());            
             Variables[nomeVariavel] = value;
-
             return value;
         }
         public override object VisitTipo([NotNull] TokenParser.TipoContext context)
-        {
-            var lex = context.tipo_base();
-            if (lex is not null)
-            {
-                if (lex.BOOLEAN() is not null)
-                    Program.Add(lex.BOOLEAN());                    
-                else if (lex.INT() is not null)
-                    Program.Add(lex.INT());
-                else if (lex.CHAR() is not null)
-                    Program.Add(lex.CHAR());
-                else if (lex.FLOAT() is not null)
-                    Program.Add(lex.FLOAT());
-                else
-                    throw new Exception("");
-            }
-            // throw new Exception("");
-            return base.VisitTipo(context);            
+        {            
+            if (context.GetChild(0) is not null && context.GetChild(0) == context.tipo_base())            
+                Visit(context.tipo_base());
+            else            
+                throw new Exception("");
+            
+            if (context.GetChild(1) is not null && context.GetChild(1) == context.dimensao())
+                Visit(context.dimensao());
+            else
+                throw new Exception("");
+
+            return base.VisitTipo(context);
         }
         public override object VisitDimensao([NotNull] TokenParser.DimensaoContext context)
-        {
-            var lex = context.dimensao();
-            
-            if (lex is not null)
+        {            
+            if (context is not null)
             {
-                if (lex.GetChild(0) is not null && lex.GetChild(0) == lex.EPSILON())
+                if (context.GetChild(0) is not null && context.GetChild(0) == context.EPSILON())
                     return base.VisitDimensao(context);
-                if (lex.GetChild(0) is not null && lex.GetChild(0) == lex.OPEN_BRACKET())
-                    Program.Add(lex.OPEN_BRACKET().GetText());
-                if (lex.GetChild(1) is not null && lex.GetChild(1) == lex.INTEGER())
-                    Program.Add(lex.INTEGER().GetText());
-                if (lex.GetChild(2) is not null && lex.GetChild(2) == lex.CLOSE_BRACKET())
-                    Program.Add(lex.CLOSE_BRACKET().GetText());
-                if (lex.GetChild(3) is not null && lex.GetChild(3) == lex.dimensao())
-                    Visit(lex.dimensao());
-
+                if (context.GetChild(0) is not null && context.GetChild(0) == context.OPEN_BRACKET())
+                    Program.Add(context.OPEN_BRACKET().GetText());
+                if (context.GetChild(1) is not null && context.GetChild(1) == context.INTEGER())
+                    Program.Add(context.INTEGER().GetText());
+                if (context.GetChild(2) is not null && context.GetChild(2) == context.CLOSE_BRACKET())
+                    Program.Add(context.CLOSE_BRACKET().GetText());
+                if (context.GetChild(3) is not null && context.GetChild(3) == context.dimensao())
+                    Visit(context.dimensao());
             }
             // throw new Exception("");
             return base.VisitDimensao(context);

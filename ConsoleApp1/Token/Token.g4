@@ -72,12 +72,12 @@ grammar Token;
 	
 	NOT	: '!';
 	ATTRIBUTION	:	'=';
-	fragment LOWER : '<'; 
-	fragment LOWER_EQUAL : '<=';
-	fragment BIGGER	: '>';
-	fragment BIGGER_EQUAL :	'>=';
-	fragment DIFFERENT : '!=';
-	fragment EQUALS	: '==';
+	LOWER : '<'; 
+	LOWER_EQUAL : '<=';
+	BIGGER	: '>';
+	BIGGER_EQUAL :	'>=';
+	DIFFERENT : '!=';
+	EQUALS	: '==';
 	
 	OR : '||';
 	AND	: '&&';
