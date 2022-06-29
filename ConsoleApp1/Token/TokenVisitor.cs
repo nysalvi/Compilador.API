@@ -10,7 +10,7 @@ namespace Compilador.API.Token
         public Dictionary<string, object?> Variables { get; } = new();
         public List<object?> Program { get; } = new();
 
-        public List<string> Erros;
+        public List<string> Erros = new List<string>();
 
         public override object VisitPrograma([NotNull] TokenParser.ProgramaContext context)
         {            
@@ -118,6 +118,86 @@ namespace Compilador.API.Token
             return base.VisitTipo_base(context);
         }
 
+        public override object VisitExpr_relacional([NotNull] TokenParser.Expr_relacionalContext context)
+        {
+            if (context is null)
+                Erros.Add("Nulo");
+
+            if(context.GetChild(0) == context.expr_aditiva() && context.GetChild(1) == context.expr_relacional2())
+            {
+
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+
+            }
+            else
+            {
+
+                Erros.Add("esperado: expr_aditiva && epr_relacional2");
+
+            }
+
+
+            return base.VisitExpr_relacional(context);
+        }
+
+        public override object VisitExpr_relacional2([NotNull] TokenParser.Expr_relacional2Context context)
+        {
+
+            if (context is null)
+                Erros.Add("Nulo");
+
+            if (context.GetChild(0) == context.COMP() && context.GetChild(1) == context.expr_aditiva() && context.GetChild(2) == context.expr_relacional2())
+            {
+
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+                Program.Add(context.GetChild(2).GetText());
+
+            }
+            else
+                Erros.Add("esperado: comp && expr_aditiva && exxpr_relacional");
+
+            return base.VisitExpr_relacional2(context);
+        }
+
+        public override object VisitExpr_aditiva([NotNull] TokenParser.Expr_aditivaContext context)
+        {
+            if (context is null)
+                Erros.Add("Nulo");
+
+            if (context.GetChild(0) == context.expr_multiplicativa() && context.GetChild(1) == context.expr_aditiva2())
+            {
+
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+
+            }
+            else
+                Erros.Add("esperado: expr_multiplicativa && exxpr_aditiva2");
+
+            return base.VisitExpr_aditiva(context);
+        }
+
+        public override object VisitExpr_aditiva2([NotNull] TokenParser.Expr_aditiva2Context context)
+        {
+            if (context is null)
+                Erros.Add("Nulo");
+
+            if (context.GetChild(0) == context.op_aditivo() && context.GetChild(1) == context.expr_multiplicativa() && context.GetChild(2) == context.expr_aditiva2())
+            {
+
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+                Program.Add(context.GetChild(2).GetText());
+
+            }
+            else if (context.GetChild(0) != context.EPSILON())
+                Erros.Add("esperado: op_aditivo && expr_multiplicativo && expr_aditiva2");
+
+            return base.VisitExpr_aditiva2(context);
+        }
+
         public override object VisitOp_aditivo([NotNull] TokenParser.Op_aditivoContext context)
         {
 
@@ -125,9 +205,9 @@ namespace Compilador.API.Token
                 Erros.Add("Nulo");
 
             if (context.GetChild(0) == context.PLUS())
-                Program.Add(context.GetChild(0));
+                Program.Add(context.GetChild(0).GetText());
             else if (context.GetChild(0) == context.MINUS())
-                Program.Add(context.GetChild(0));
+                Program.Add(context.GetChild(0).GetText());
             else
                 Erros.Add("esperava: plus | minus");
 
@@ -143,8 +223,8 @@ namespace Compilador.API.Token
             if(context.GetChild(0) == context.fator() && context.GetChild(1) == context.expr_multiplicativa2())
             {
 
-                Program.Add(context.GetChild(0));
-                Program.Add(context.GetChild(1));
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
 
             }
             else
@@ -163,9 +243,9 @@ namespace Compilador.API.Token
             if (context.GetChild(0) == context.op_multiplicativo() && context.GetChild(1) == context.fator() && context.GetChild(2) == context.expr_multiplicativa2())
             {
 
-                Program.Add(context.GetChild(0));
-                Program.Add(context.GetChild(1));
-                Program.Add(context.GetChild(2));
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+                Program.Add(context.GetChild(2).GetText());
 
             }
             else if (context.GetChild(0) != context.EPSILON())
@@ -180,11 +260,11 @@ namespace Compilador.API.Token
                 Erros.Add("Nulo");
 
             if (context.GetChild(0) == context.TIMES())
-                Program.Add(context.GetChild(0));
+                Program.Add(context.GetChild(0).GetText());
             else if (context.GetChild(0) == context.DIV())
-                Program.Add(context.GetChild(0));
+                Program.Add(context.GetChild(0).GetText());
             else if (context.GetChild(0) == context.MOD())
-                Program.Add(context.GetChild(0));
+                Program.Add(context.GetChild(0).GetText());
 
             else
                 Erros.Add("...");
@@ -200,27 +280,27 @@ namespace Compilador.API.Token
             if(context.GetChild(0) == context.sinal() && context.GetChild(1) == context.ID() && context.GetChild(2) == context.vetor())
             {
 
-                Program.Add(context.GetChild(0));
-                Program.Add(context.GetChild(1));
-                Program.Add(context.GetChild(2));
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+                Program.Add(context.GetChild(2).GetText());
 
             }else if(context.GetChild(0) == context.constante())
             {
 
-                Program.Add(context.GetChild(0));
+                Program.Add(context.GetChild(0).GetText());
 
             }else if(context.GetChild(0) == context.NOT() && context.GetChild(1) == context.fator())
             {
 
-                Program.Add(context.GetChild(0));
-                Program.Add(context.GetChild(1));
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
 
             }else if (context.GetChild(0) == context.OPEN_PARENTHESIS() && context.GetChild(1) == context.expressao() && context.GetChild(2) == context.CLOSE_PARENTHESIS())
             {
 
-                Program.Add(context.GetChild(0));
-                Program.Add(context.GetChild(1));
-                Program.Add(context.GetChild(2));
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+                Program.Add(context.GetChild(2).GetText());
 
             }
             else
@@ -242,9 +322,9 @@ namespace Compilador.API.Token
             if(context.GetChild(0) == context.OPEN_BRACKET() && context.GetChild(1) == context.expr_aditiva() && context.GetChild(2) == context.CLOSE_BRACKET())
             {
 
-                Program.Add(context.GetChild(0));
-                Program.Add(context.GetChild(1));
-                Program.Add(context.GetChild(2));
+                Program.Add(context.GetChild(0).GetText());
+                Program.Add(context.GetChild(1).GetText());
+                Program.Add(context.GetChild(2).GetText());
 
             }else if(context.GetChild(0) != context.EPSILON())
                 Erros.Add("esperado : [ sinal | constante | variavel | expressão entre () ]");
@@ -276,14 +356,13 @@ namespace Compilador.API.Token
             if (context is null)
                 Erros.Add("nulo");
 
-            if (context.GetChild(0) == context.PLUS() || context.GetChild(0) == context.MINUS()) { 
-            
+            if (context.GetChild(0) == context.PLUS())
                 Program.Add(context.GetChild(0).GetText());
-            
-            }else if(context.GetChild(0) != context.EPSILON())
+            else if(context.GetChild(0) == context.MINUS())
+                Program.Add(context.GetChild(0).GetText());
+            else if(context.GetChild(0) != context.EPSILON())
                 Erros.Add("esperado : + | -");
 
-            
             return base.VisitSinal(context);
         }
     }

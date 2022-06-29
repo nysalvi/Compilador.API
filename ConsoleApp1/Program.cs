@@ -32,12 +32,12 @@ namespace ConsoleApp1
                 Console.WriteLine("asdadasdasda");
                 Console.WriteLine(resultado);
             */
-            String input = "int[4]";
+            String input = "-20";
             ICharStream tokenStream = CharStreams.fromString(input);
             ITokenSource lexer = new TokenLexer(tokenStream);
             ITokenStream tokens = new CommonTokenStream(lexer);
             TokenParser tokenParser = new TokenParser(tokens);
-            IParseTree tree = tokenParser.tipo();
+            IParseTree tree = tokenParser.constante();
             TokenVisitor tokenVisitor = new TokenVisitor();
             //var output = tokenVisitor.Visit(tree);
             //Console.WriteLine($"{input} = {output}");            
