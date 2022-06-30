@@ -13,7 +13,7 @@ namespace Compilador.API.Token
         public List<string> Erros = new List<string>();
 
         public override object VisitPrograma([NotNull] TokenParser.ProgramaContext context)
-        {            
+        {
             if (context is null)
             {
 
@@ -27,14 +27,7 @@ namespace Compilador.API.Token
             return base.VisitPrograma(context);
         }
 
-        public override object? VisitAtribuicao([NotNull] TokenParser.AtribuicaoContext context)
-        {
-            var nomeVariavel = context.ID().GetText();
-            var value = Visit(context.complemento());            
-            Variables[nomeVariavel] = nomeVariavel;
-            //return value;
-            return base.VisitAtribuicao(context);
-        }
+
         public override object VisitTipo([NotNull] TokenParser.TipoContext context)
         {
             if (context.GetChild(0) is not null && context.GetChild(0) != context.tipo_base())
@@ -45,7 +38,7 @@ namespace Compilador.API.Token
 
                 //context.AddErrorNode();                
             }
-            
+
             if (context.GetChild(1) is not null && context.GetChild(1) != context.dimensao())
                 Visit(context.dimensao());
             else
@@ -54,13 +47,13 @@ namespace Compilador.API.Token
             return base.VisitTipo(context);
         }
         public override object VisitDimensao([NotNull] TokenParser.DimensaoContext context)
-        {            
+        {
             if (context is not null)
             {
                 if (context.GetChild(0) is not null && context.GetChild(0) == context.EPSILON())
                 {
                     return base.VisitDimensao(context);
-                }                    
+                }
                 if (context.GetChild(0) is not null && context.GetChild(0) == context.OPEN_BRACKET())
                     Program.Add(context.OPEN_BRACKET().GetText());
                 else
@@ -82,24 +75,19 @@ namespace Compilador.API.Token
                 if (context.GetChild(3) is not null && context.GetChild(3) != context.dimensao())
                 {
 
-                }                    
+                }
             }
             // throw new Exception("");
             return base.VisitDimensao(context);
         }
-        public override object VisitComplemento([NotNull] TokenParser.ComplementoContext context)
-        {
-            //expressao SEMICOLON | funcao SEMICOLON;
 
-            return base.VisitComplemento(context);
-        }
         public override object VisitTipo_base([NotNull] TokenParser.Tipo_baseContext context)
         {
             if (context.INT() != null)
             {
                 Program.Add(context.INT().GetText());
                 //return context.INT().GetText();            
-            }        
+            }
             if (context.BOOLEAN() != null)
             {
                 Program.Add(context.BOOLEAN().GetText());
@@ -123,7 +111,7 @@ namespace Compilador.API.Token
             if (context is null)
                 Erros.Add("Nulo");
 
-            if(context.GetChild(0) == context.expr_aditiva() && context.GetChild(1) == context.expr_relacional2())
+            if (context.GetChild(0) == context.expr_aditiva() && context.GetChild(1) == context.expr_relacional2())
             {
 
                 Program.Add(context.GetChild(0).GetText());
@@ -220,7 +208,7 @@ namespace Compilador.API.Token
             if (context is null)
                 Erros.Add("Nulo");
 
-            if(context.GetChild(0) == context.fator() && context.GetChild(1) == context.expr_multiplicativa2())
+            if (context.GetChild(0) == context.fator() && context.GetChild(1) == context.expr_multiplicativa2())
             {
 
                 Program.Add(context.GetChild(0).GetText());
@@ -230,8 +218,8 @@ namespace Compilador.API.Token
             else
                 Erros.Add("esperado: fator && expr_multiplicativa2");
 
-            
-            
+
+
             return base.VisitExpr_multiplicativa(context);
         }
 
@@ -250,7 +238,7 @@ namespace Compilador.API.Token
             }
             else if (context.GetChild(0) != context.EPSILON())
                 Erros.Add("esperado: episilon");
-            
+
             return base.VisitExpr_multiplicativa2(context);
         }
 
@@ -277,25 +265,28 @@ namespace Compilador.API.Token
             if (context is null)
                 Erros.Add("Nulo");
 
-            if(context.GetChild(0) == context.sinal() && context.GetChild(1) == context.ID() && context.GetChild(2) == context.vetor())
+            if (context.GetChild(0) == context.sinal() && context.GetChild(1) == context.ID() && context.GetChild(2) == context.vetor())
             {
 
                 Program.Add(context.GetChild(0).GetText());
                 Program.Add(context.GetChild(1).GetText());
                 Program.Add(context.GetChild(2).GetText());
 
-            }else if(context.GetChild(0) == context.constante())
+            }
+            else if (context.GetChild(0) == context.constante())
             {
 
                 Program.Add(context.GetChild(0).GetText());
 
-            }else if(context.GetChild(0) == context.NOT() && context.GetChild(1) == context.fator())
+            }
+            else if (context.GetChild(0) == context.NOT() && context.GetChild(1) == context.fator())
             {
 
                 Program.Add(context.GetChild(0).GetText());
                 Program.Add(context.GetChild(1).GetText());
 
-            }else if (context.GetChild(0) == context.OPEN_PARENTHESIS() && context.GetChild(1) == context.expressao() && context.GetChild(2) == context.CLOSE_PARENTHESIS())
+            }
+            else if (context.GetChild(0) == context.OPEN_PARENTHESIS() && context.GetChild(1) == context.expressao() && context.GetChild(2) == context.CLOSE_PARENTHESIS())
             {
 
                 Program.Add(context.GetChild(0).GetText());
@@ -309,7 +300,7 @@ namespace Compilador.API.Token
                 Erros.Add("...");
 
             }
-            
+
             return base.VisitFator(context);
         }
 
@@ -319,14 +310,15 @@ namespace Compilador.API.Token
             if (context is null)
                 Erros.Add("Nulo");
 
-            if(context.GetChild(0) == context.OPEN_BRACKET() && context.GetChild(1) == context.expr_aditiva() && context.GetChild(2) == context.CLOSE_BRACKET())
+            if (context.GetChild(0) == context.OPEN_BRACKET() && context.GetChild(1) == context.expr_aditiva() && context.GetChild(2) == context.CLOSE_BRACKET())
             {
 
                 Program.Add(context.GetChild(0).GetText());
                 Program.Add(context.GetChild(1).GetText());
                 Program.Add(context.GetChild(2).GetText());
 
-            }else if(context.GetChild(0) != context.EPSILON())
+            }
+            else if (context.GetChild(0) != context.EPSILON())
                 Erros.Add("esperado : [ sinal | constante | variavel | expressão entre () ]");
 
 
@@ -338,15 +330,15 @@ namespace Compilador.API.Token
             if (context is null)
                 Erros.Add("Nulo");
 
-            if(context.GetChild(0) == context.sinal() && context.GetChild(1) == context.INTEGER() || context.GetChild(0) == context.sinal() && context.GetChild(1) == context.DECIMAL())
+            if (context.GetChild(0) == context.sinal() && context.GetChild(1) == context.INTEGER() || context.GetChild(0) == context.sinal() && context.GetChild(1) == context.DECIMAL())
             {
 
-                    Program.Add(context.GetChild(0));
-                    Program.Add(context.GetChild(1));
+                Program.Add(context.GetChild(0));
+                Program.Add(context.GetChild(1));
 
             }
-            else if(context.GetChild(0) == context.TEXT())
-                    Program.Add(context.TEXT().GetText());
+            else if (context.GetChild(0) == context.TEXT())
+                Program.Add(context.TEXT().GetText());
 
             return base.VisitConstante(context);
         }
@@ -358,12 +350,235 @@ namespace Compilador.API.Token
 
             if (context.GetChild(0) == context.PLUS())
                 Program.Add(context.GetChild(0).GetText());
-            else if(context.GetChild(0) == context.MINUS())
+            else if (context.GetChild(0) == context.MINUS())
                 Program.Add(context.GetChild(0).GetText());
-            else if(context.GetChild(0) != context.EPSILON())
+            else if (context.GetChild(0) != context.EPSILON())
                 Erros.Add("esperado : + | -");
 
             return base.VisitSinal(context);
         }
+
+        #region DANIEL <3
+        public override object VisitSenao([NotNull] TokenParser.SenaoContext context)
+        {
+            if (context is null)
+                Erros.Add("nulo");
+            if (context.GetChild(0) == context.EPSILON())
+            {
+                return base.VisitSenao(context);
+            }
+            if (context.GetChild(0) != context.ELSE())
+                Erros.Add("esperado : else");
+            else
+                Program.Add(context.ELSE().GetText());
+            if (context.GetChild(1) != context.bloco())
+                Erros.Add("esperado : condicao bloco");
+
+            return base.VisitSenao(context);
+        }
+        public override object VisitEnquanto([NotNull] TokenParser.EnquantoContext context)
+        {
+            if (context is null)
+                Erros.Add("nulo");
+            if (context.GetChild(0) != context.WHILE())
+            {
+                Erros.Add("esperado : while");
+            }
+            else
+            {
+                Program.Add(context.WHILE().GetText());
+            }
+            if (context.GetChild(1) != context.OPEN_PARENTHESIS())
+            {
+                Erros.Add("esperado : (");
+            }
+            else
+            {
+                Program.Add(context.OPEN_PARENTHESIS().GetText());
+            }
+            if (context.GetChild(2) != context.expressao())
+            {
+                Erros.Add("esperado : condicao espressao");
+            }
+            if (context.GetChild(3) != context.CLOSE_PARENTHESIS())
+            {
+                Erros.Add("esperado : )");
+            }
+            else
+            {
+                Program.Add(context.CLOSE_PARENTHESIS().GetText());
+            }
+            if (context.GetChild(4) != context.bloco())
+            {
+                Erros.Add("esperado : condicao bloco");
+            }
+            return base.VisitEnquanto(context);
+        }
+        public override object? VisitAtribuicao([NotNull] TokenParser.AtribuicaoContext context)
+        {
+            if (context is null)
+                Erros.Add("nulo");
+            if (context.GetChild(0) != context.ID())
+            {
+                Erros.Add("esperado : id");
+            }
+            else
+            {
+                Program.Add(context.ID().GetText());
+            }
+            if (context.GetChild(1) != context.ATTRIBUTION())
+            {
+                Erros.Add("esperado : attribution");
+            }
+            else
+            {
+                Program.Add(context.ATTRIBUTION().GetText());
+            }
+            if (context.GetChild(2) != context.complemento())
+            {
+                Erros.Add("esperado : condicao complemento");
+            }
+            return base.VisitAtribuicao(context);
+        }
+
+        public override object VisitComplemento([NotNull] TokenParser.ComplementoContext context)
+        {
+            if (context is null)
+                Erros.Add("nulo");
+            if (context.GetChild(0) != context.expressao() || (context.GetChild(0) != context.funcao()))
+            {
+                Erros.Add("esperado : condicao | funcao");
+            }
+            if (context.GetChild(1) != context.SEMICOLON())
+            {
+                Erros.Add("esperado : ;");
+            }
+            else
+            {
+                Program.Add(context.SEMICOLON().GetText());
+            }
+            return base.VisitComplemento(context);
+        }
+        public override object VisitFuncao([NotNull] TokenParser.FuncaoContext context)
+        {
+            if (context is null)
+                Erros.Add("nulo");
+            if (context.GetChild(0) != context.FUNC())
+            {
+                Erros.Add("esperado : func");
+            }
+            else
+            {
+                Program.Add(context.FUNC().GetText());
+            }
+            if (context.GetChild(1) != context.ID())
+            {
+                Erros.Add("esperado : id");
+            }
+            else
+            {
+                Program.Add(context.ID().GetText());
+            }
+            if (context.GetChild(2) != context.OPEN_PARENTHESIS())
+            {
+                Erros.Add("esperado : (");
+            }
+            else
+            {
+                Program.Add(context.OPEN_PARENTHESIS().GetText());
+            }
+            if (context.GetChild(3) != context.argumentos())
+            {
+                Erros.Add("eperado : condicao argumentos");
+            }
+            if (context.GetChild(4) != context.CLOSE_PARENTHESIS())
+            {
+                Erros.Add("esperado : )");
+            }
+            else
+            {
+                Program.Add(context.CLOSE_PARENTHESIS().GetText());
+            }
+            return base.VisitFuncao(context);
+        }
+        public override object VisitArgumentos([NotNull] TokenParser.ArgumentosContext context)
+        {
+            if (context.GetChild(0) == context.EPSILON())
+            {
+                return base.VisitArgumentos(context);
+            }
+            if (context.GetChild(0) != context.expressao())
+            {
+                Erros.Add("esperado : condicao expressao");
+            }
+            if (context.GetChild(1) != context.novo_argumento())
+            {
+                Erros.Add("esperado : condicao novo_argumento");
+            }
+            return base.VisitArgumentos(context);
+        }
+        public override object VisitNovo_argumento([NotNull] TokenParser.Novo_argumentoContext context)
+        {
+            if (context.GetChild(0) == context.EPSILON())
+            {
+                return base.VisitNovo_argumento(context);
+            }
+            if (context.GetChild(0) != context.COMMA())
+            {
+                Erros.Add("esperado : ,");
+            }
+            else
+            {
+                Program.Add(context.COMMA().GetText());
+            }
+            if (context.GetChild(1) != context.expressao())
+            {
+                Erros.Add("esperadp : condicao expressao");
+            }
+            if (context.GetChild(2) != context.novo_argumento())
+            {
+                Erros.Add("esperadp : condicao novo_argumento");
+            }
+
+            return base.VisitNovo_argumento(context);
+        }
+        public override object VisitRetorno([NotNull] TokenParser.RetornoContext context)
+        {
+            if (context.GetChild(0) == context.EPSILON())
+            {
+                return base.VisitRetorno(context);
+            }
+            if (context.GetChild(0) != context.RETURN())
+            {
+                Erros.Add("esperado : return");
+            }
+            else {
+                Program.Add(context.RETURN().GetText());
+            }
+            if (context.GetChild(1) != context.expressao())
+            {
+                Erros.Add("esperado : condicao expressao");
+            }
+            if (context.GetChild(2) != context.SEMICOLON())
+            {
+                Erros.Add("esperado : semicolom");
+            }
+            else
+            {
+                Program.Add(context.SEMICOLON().GetText());
+            }
+            return base.VisitRetorno(context);
+        }
+        public override object VisitExpressao([NotNull] TokenParser.ExpressaoContext context)
+        {
+            if (context.GetChild(0) != context.expr_ou())
+            {
+                Erros.Add("esperado : condicao expressao");
+            }
+            return base.VisitExpressao(context);
+        }
     }
+    #endregion
+
 }
+
