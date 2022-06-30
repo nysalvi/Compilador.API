@@ -27,14 +27,6 @@ namespace Compilador.API.Token
             return base.VisitPrograma(context);
         }
 
-        public override object? VisitAtribuicao([NotNull] TokenParser.AtribuicaoContext context)
-        {
-            var nomeVariavel = context.ID().GetText();
-            var value = Visit(context.complemento());
-            Variables[nomeVariavel] = nomeVariavel;
-            //return value;
-            return base.VisitAtribuicao(context);
-        }
         public override object VisitTipo([NotNull] TokenParser.TipoContext context)
         {
             if (context.GetChild(0) is not null && context.GetChild(0) != context.tipo_base())
