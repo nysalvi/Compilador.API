@@ -48,7 +48,7 @@ namespace ConsoleApp1
             TokenListener s;
             IParseTree three = tokenParser.tipo();
             Console.WriteLine(three.ToStringTree(tokenParser));
-
+            
 
             TokenLexer Lexer = new TokenLexer(tokenStream);
             CommonTokenStream Tokens = new CommonTokenStream(Lexer);
