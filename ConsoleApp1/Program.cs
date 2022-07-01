@@ -1,7 +1,10 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-using Compilador.API.Token;
+//using Compilador.API.Token;
+using ConsoleApp1.Token;
+
 using System;
+using System.IO;
 using System.Text;
 
 namespace ConsoleApp1
@@ -32,20 +35,36 @@ namespace ConsoleApp1
                 Console.WriteLine("asdadasdasda");
                 Console.WriteLine(resultado);
             */
+            //TokenLexer lexem = new TokenLexer(File.Open("ads", FileMode.Open));
+            //CommonTokenStream tokensb  = new CommonTokenStream(lexer);
             String input = "int[4]";
+
             ICharStream tokenStream = CharStreams.fromString(input);
             ITokenSource lexer = new TokenLexer(tokenStream);
             ITokenStream tokens = new CommonTokenStream(lexer);
             TokenParser tokenParser = new TokenParser(tokens);
-            IParseTree tree = tokenParser.tipo();
-            TokenVisitor tokenVisitor = new TokenVisitor();
+            
+            IParseTree tree = tokenParser.tipo();            
+            TokenListener s;
+            IParseTree three = tokenParser.tipo();
+            Console.WriteLine(three.ToStringTree(tokenParser));
+
+
+            TokenLexer Lexer = new TokenLexer(tokenStream);
+            CommonTokenStream Tokens = new CommonTokenStream(Lexer);
+            TokenParser parser = new TokenParser(Tokens);
+            TokenParser.ProgramaContext Tree = parser.programa();
+            TokenListener extractor = new TokenListener(parser);
+            ParseTreeWalker.Default.Walk(extractor, Tree);
+
             //var output = tokenVisitor.Visit(tree);
             //Console.WriteLine($"{input} = {output}");            
-            tokenVisitor.Visit(tree);
+            /*tokenVisitor.Visit(tree);
             foreach (var item in tokenVisitor.Program)
             {
                 Console.WriteLine(item);
             }
+            */
         }
     }
 }

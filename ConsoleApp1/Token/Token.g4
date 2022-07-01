@@ -3,11 +3,11 @@ grammar Token;
 /* 
  * Parser Rules
  */
-	programa  :	funcoes principal;
+	programa  :	funcoes principal EOF;
 	funcoes : dec_funcao funcoes | EPSILON;
 	dec_funcao : tipo_retorno ID OPEN_PARENTHESIS parametros CLOSE_PARENTHESIS bloco;
 	tipo_retorno : tipo | VOID;
-	tipo : tipo_base dimensao;
+	tipo : tipo_base dimensao EOF;
 	tipo_base : CHAR | FLOAT | INT | BOOLEAN;
 	dimensao : OPEN_BRACKET INTEGER CLOSE_BRACKET dimensao | EPSILON;
 	parametros : tipo ID novo_parametro | EPSILON;
